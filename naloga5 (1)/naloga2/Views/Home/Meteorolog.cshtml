@@ -1,0 +1,16 @@
+﻿@model naloga2.Models.Meteorolog;
+@{
+    ViewData["Title"] = "Meteorolog";
+}
+
+<h1>Meteorolog</h1>
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+
+    @Html.EditorForModel()
+
+    <input type="submit" value="Poslji" />
+    <br />
+    <a href="@Url.Action("PrikazMeteorologov","Home")">Prikazi meteorologe</a>
+}

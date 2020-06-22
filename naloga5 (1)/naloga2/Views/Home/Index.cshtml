@@ -1,0 +1,123 @@
+﻿
+
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Kaj je "Meteorološka postaja"?
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                Meteorološka postaja je ustanova meteorološke službe, ki služi za meteorološka opazovanja za preučevanje vremena in podnebja ter za druge znanstvene raziskave, pomembne za vse panoge človeške dejavnosti, zlasti kmetijstvo, gozdarstvo, gospodarjenje z vodami in promet. V okviru Svetovne meteorološke organizacije služijo za mednarodno izmenjavo podatkov za proučevanje Zemljine atmosfere kot celote.
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Meteorologija
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                Meteorologíja ali vremenoslóvje je znanost o ozračju, ki raziskuje vremenske procese in napoveduje vreme. Meteorološki fenomeni so opazovani vremenski dogodki in jih razlaga meteorologija. Te dogodke določajo spremenljivke Zemljinega ozračja (npr. temperatura, tlak in vodna para). Gradniki in odnosi med spremenljivkami se spreminjajo skozi čas. Večina opazovanega zemeljskega vremena se nahaja v troposferi.
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Samodejna vremenska postaja
+                </button>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                Avtomatska meteorološka postaja izvaja meritve glavnih meteoroloških pojavov (elementov) , nenehno (neprekinjeno) jih zapisuje v magnetne zapise in jih po radiu ali žici poroča po zbirnih centrih. Pomorske postaje na kopnem in ladjah izvajajo program sinoptičnih postaj s poudarkom na opazovanju stanja morja . Samodejne postaje na morju, na zasidranih ali premičnih bojevih poročajo ne le o meteoroloških, temveč tudi o oceanografskih podatkih (višina valov ,temperatura morja, morski tokovi in drugo).
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+
+
+
+
+
+
+
+<table id="tabla-uporabnikov" class="table">
+    <tr>
+
+        <th>Ime:</th>
+        <th>Priimek:</th>
+        <th>Rojstni dan:</th>
+        <th>Kraj rojstva:</th>
+        <th>Emso:</th>
+        <th>Starost:</th>
+        <th>Naslov:</th>
+        <th>Postna st:</th>
+        <th>Posta:</th>
+        <th>Drzava:</th>
+        <th>Email:</th>
+    </tr>
+
+    @{
+
+        List<Uporabnik> uporabniks = new List<Uporabnik>();
+        using (var db = new Baza())
+        {
+            uporabniks = db.uporabniki.ToList();
+        }
+
+
+        @for (int i = 0; i < uporabniks.Count; i++)//pazi s cim se zacne z 0 or 1 pa db zazi
+        {
+            <tr>
+                <td>@uporabniks[i].Ime</td>
+                <td>@uporabniks[i].priimek</td>
+                <td>@uporabniks[i].RojstniDan</td>
+                <td>@uporabniks[i].KrajRojstva</td>
+                <td>@uporabniks[i].emso</td>
+                <td>@uporabniks[i].starost</td>
+                <td>@uporabniks[i].Naslov</td>
+                <td>@uporabniks[i].PostnaStevilka</td>
+                <td>@uporabniks[i].Posta</td>
+                <td>@uporabniks[i].Drzava</td>
+                <td>@uporabniks[i].Email</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Home", new { id = i })">Edit</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete", "Home", new { id = i})">Delete</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("IzpisPregled", "Home", new { id = i})">Podrobnosti</a>
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+
+
+

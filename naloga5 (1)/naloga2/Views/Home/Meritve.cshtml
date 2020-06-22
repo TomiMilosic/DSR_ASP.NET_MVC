@@ -1,0 +1,17 @@
+﻿@model naloga2.Models.Meritve;
+@{
+    ViewData["Title"] = "Meritve";
+}
+
+<h1>Meritve</h1>
+
+
+
+@using (Html.BeginForm(FormMethod.Post)) { 
+
+    @Html.EditorForModel()
+
+<input type="submit" value="Poslji" />
+<br />
+<a href="@Url.Action("prikazMeritev","Home")">Prikaz meritev:</a>
+}

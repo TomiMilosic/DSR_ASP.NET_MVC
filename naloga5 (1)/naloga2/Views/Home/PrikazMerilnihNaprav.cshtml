@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "PrikazMerilnihNaprav";
+}
+
+<h1>PrikazMerilnihNaprav</h1>
+
+
+<table id="tabla-uporabnikov" class="table">
+    <tr>
+        <th>ID:</th>
+        <th>Ime:</th>
+        <th>Zemljepisna dolzina:</th>
+        <th>Zemljepisna sirina:</th>
+
+    </tr>
+
+    @{
+
+        List<Merilnanaprava> merilnanapravas = new List<Merilnanaprava>();
+        using (var db = new Baza())
+        {
+            merilnanapravas = db.merilnanapravas.ToList();
+        }
+
+
+        @for (int i = 0; i < merilnanapravas.Count; i++)
+        {
+            <tr>
+                <td>@merilnanapravas[i].Id</td>
+                <td>@merilnanapravas[i].Ime</td>
+                <td>@merilnanapravas[i].Zemljepisna_dolzina</td>
+                <td>@merilnanapravas[i].Zemljepisna_sirina</td>
+
+                <td>
+                    <a href="@Url.Action("EditMerilnaNaprava", "Home", new { id = i })">Edit</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("DeleteMerilnaNaprava", "Home", new { id = i})">Delete</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("IzpisMerilnaNaprava", "Home", new { id = i})">Podrobnosti</a>
+                </td>
+            </tr>
+        }
+    }
+
+</table>

@@ -1,0 +1,13 @@
+﻿@model naloga2.Models.Meteorolog;
+@{
+    ViewData["Title"] = "EditMeteorolog";
+}
+
+<h1>EditMeteorolog</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel();
+    <br />
+    <input type="submit" value="Poslji" />
+}

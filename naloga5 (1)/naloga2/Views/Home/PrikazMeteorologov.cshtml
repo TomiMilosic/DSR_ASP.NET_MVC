@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "PrikazMeteorologov";
+}
+
+<h1>PrikazMeteorologov</h1>
+
+<table id="tabla-uporabnikov" class="table">
+    <tr>
+
+        <th>ID:</th>
+        <th>Ime:</th>
+        <th>Priimek:</th>
+        <th>Leto zaposlitve:</th>
+      
+    </tr>
+
+    @{
+
+        List<Meteorolog> Meteorologs = new List<Meteorolog>();
+        using (var db = new Baza())
+        {
+            Meteorologs = db.meteorologs.ToList();
+        }
+
+
+        @for (int i = 0; i < Meteorologs.Count; i++)//pazi s cim se zacne z 0 or 1 pa db zazi
+        {
+            <tr>
+                <td>@Meteorologs[i].Id</td>
+                <td>@Meteorologs[i].Ime</td>
+                <td>@Meteorologs[i].Priimek</td>
+                <td>@Meteorologs[i].LetoZaposlitve</td>
+                <td>
+                    <a href="@Url.Action("EditMeteorolog", "Home", new { id = i })">Edit</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("DeleteMeteorolog", "Home", new { id = i})">Delete</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("IzpisMeteorologa", "Home", new { id = i})">Podrobnosti</a>
+                </td>
+            </tr>
+        }
+    }
+
+</table>

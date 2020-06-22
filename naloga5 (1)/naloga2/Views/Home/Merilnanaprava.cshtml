@@ -1,0 +1,29 @@
+﻿@model naloga2.Models.Merilnanaprava;
+
+@{
+    ViewData["Title"] = "Merilnanaprava";
+}
+
+<h1>Merilna naprava</h1>
+
+
+
+
+
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+
+    @Html.EditorForModel()
+
+    <input type="submit" value="Poslji" />
+    <br />
+    <a href="@Url.Action("PrikazMerilnihNaprav","Home")">Prikazi merilne naprave</a>
+}
+
+
+
+
+
+
+

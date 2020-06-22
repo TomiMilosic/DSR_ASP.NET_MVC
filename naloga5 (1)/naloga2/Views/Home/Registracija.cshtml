@@ -1,0 +1,101 @@
+﻿@model naloga2.Models.Uporabnik;
+
+@{
+    ViewData["Title"] = "Registracija";
+}
+
+
+
+<h1>Registracija</h1>
+@using (Html.BeginForm())
+{
+
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Korak1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Korak2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Korak3</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+            <fieldset>
+
+
+                @Html.Label("Ime")
+                @Html.TextBoxFor(x => x.Ime)
+
+                <br />
+                @Html.Label("Priimek")
+                @Html.TextBoxFor(x => x.priimek)
+
+
+                <div>Starost: </div>
+                @Html.Raw("<div id='slider'></div>")
+
+                @Html.Hidden("Starost")
+                <br />
+                @Html.Label("Rojstni dan: ")
+                @Html.Raw("<input id='datepicker' ></input>")
+                @Html.Hidden("RojstniDan")
+                <br />
+                @Html.Label("Emso: ")
+                @Html.TextBoxFor(x => x.emso)
+                <br />
+
+                @Html.Label("Kraj rojstva: ")
+                @Html.DropDownListFor(x => x.KrajRojstva, Uporabnik.GetKraji())
+
+
+
+
+            </fieldset>
+
+
+
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+
+            <fieldset>
+                @Html.Label("Naslov")
+                @Html.TextBoxFor(x => x.Naslov)
+                <br />
+                @Html.Label("Poštna številka")
+                @Html.TextBoxFor(x => x.PostnaStevilka)
+                <br />
+                @Html.Label("Pošta")
+                @Html.TextBoxFor(x => x.Posta)
+                <br />
+                @Html.Label("Država")
+                @Html.TextBoxFor(x => x.Drzava)
+            </fieldset>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+            @Html.Label("Email:")
+            @Html.TextBoxFor(x => x.Email, new { type = "email", required = "required" })
+            <br />
+            @*@Html.Label("Geslo:")
+            @Html.TextBoxFor(x => x.Geslo, new { pattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$", required = "required" })
+            <br />
+            @Html.Label("Ponovno vnesite geslo:")
+            @Html.TextBoxFor(x => x.Geslo2, new { pattern = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$", required = "required" })*@
+
+
+
+        </div>
+    </div>
+
+
+
+    <input type="submit" value="Naprej" />
+
+
+}
+

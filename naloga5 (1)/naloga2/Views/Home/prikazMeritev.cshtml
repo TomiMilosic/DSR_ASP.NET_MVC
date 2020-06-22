@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "prikazMeritev";
+}
+
+<h1>prikazMeritev</h1>
+
+
+<table class="table">
+<tr>
+
+    <th>ID:</th>
+    <th>Meteorlog id:</th>
+    <th>Naprava id:</th>
+    <th>Okvara:</th>
+    <th>Temparatura:</th>
+    <th>Vlaznost:</th>
+
+</tr>
+
+@{
+
+    List<Meritve> meritves = new List<Meritve>();
+    using (var db = new Baza())
+    {
+        meritves = db.Meritves.ToList();
+    }
+
+
+    @for (int i = 0; i < meritves.Count; i++)//pazi s cim se zacne z 0 or 1 pa db zazi
+    {
+        <tr>
+            <td>@meritves[i].Id</td>
+            <td>@meritves[i].ID_MLOG_TK</td>
+            <td>@meritves[i].ID_NAPR_TK</td>
+            <td>@meritves[i].Okvara</td>
+            <td>@meritves[i].Temparatura</td>
+            <td>@meritves[i].Vlaznost</td>
+       
+            <td>
+                <a href="@Url.Action("EditMeritve", "Home", new { id = i })">Edit</a>
+            </td>
+            <td>
+                <a href="@Url.Action("Deletemeritve", "Home", new { id = i})">Delete</a>
+            </td>
+            <td>
+                <a href="@Url.Action("IzpisMeritev", "Home", new { id = i})">Podrobnosti</a>
+            </td>
+        </tr>
+    }
+}
+
+</table>

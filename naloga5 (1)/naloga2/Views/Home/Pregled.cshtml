@@ -1,0 +1,18 @@
+﻿
+@model naloga2.Models.Uporabnik;
+@using System.Collections.Generic;
+
+
+
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    @Html.EditorForModel();
+    <br />
+    <input type="submit" value="Poslji" />
+}
+
+
+
+
+
